@@ -6,7 +6,7 @@ import * as actionTypes from './actionTypes'
 const defaultState = fromJS({
   page_title: '',
   userinfo: {
-    name: 'ljh'
+    name: ''
   }
 })
 
