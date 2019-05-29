@@ -1,6 +1,7 @@
 import React from "react";
 import { NavBar, Icon } from "antd-mobile";
 import Logo from '../../components/Logo/Logo'
+import {HomeWrapper} from './style.js'
 
 const Register = props => {
   return (
@@ -12,7 +13,7 @@ const Register = props => {
         注册
       </NavBar>
       <Logo/>
-      <div className="content">hello</div>
+      <HomeWrapper>hello</HomeWrapper>
     </div>
   );
 };
