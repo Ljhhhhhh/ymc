@@ -5,6 +5,7 @@ export const LogoWrapper = styled.div`
   height: 60px;
   border-radius: 50%;
   overflow: hidden;
+  margin: 0 auto;
   img{
     width: 100%;
     height: 100%;
