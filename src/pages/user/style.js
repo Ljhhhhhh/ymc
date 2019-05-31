@@ -42,3 +42,28 @@ export const BtnWrap = styled.div `
 		}
 	}
 `
+
+export const WidBtn = styled(BtnWrap) `
+	margin-top: 80px;
+	width: 310px;
+`
+
+export const ToggleType = styled.div `
+	text-align: center;
+	color: #999;
+	font-size: 12px;
+	margin-top: 25px;
+`
+
+export const Read = styled.div `
+	text-align: center;
+	color: #CCCCCC;
+	font-size: 12px;
+	margin-top: 50px;
+`
+
+export const ForgetWrap = styled.div `
+	text-align: right;
+	margin-top: 15px;
+	padding: 0 25px;
+`

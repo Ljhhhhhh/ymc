@@ -4,6 +4,9 @@ import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
 // import routerConfig from './config/routerConfig'
 import App from './App'
 import Register from './pages/user/register'
+import Login from './pages/user/login'
+import Forget from './pages/user/forget'
+import Home from './pages/Home/home'
 // import Layout from './layout/layout'
 // import Home from './pages/home'
 // import Category from './pages/product/category'
@@ -14,7 +17,7 @@ import Register from './pages/user/register'
 // import OrderDetail from './pages/order/detail'
 // import User from './pages/user';
 
-import NoMatch from './pages/nomatch'
+// import NoMatch from './pages/nomatch'
 
 // const storage = new Storage()
 export default class Router extends Component {
@@ -24,7 +27,10 @@ export default class Router extends Component {
         <App>
           <Switch>
             <Route exact path='/register' component={Register} />
-            <Redirect to='/register' />
+            <Route exact path='/login' component={Login} />
+            <Route exact path='/forget' component={Forget} />
+            <Route exact path='/home' component={Home} />
+            <Redirect to='/home' />
           </Switch>
         </App>
       </HashRouter>
