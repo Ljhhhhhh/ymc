@@ -1,44 +1,64 @@
-import React from 'react'
-import HomePng from '../../static/images/tabbar/home.png'
-import HomeSelectedPng from '../../static/images/tabbar/home_selected'
-import MePng from '../../static/images/tabbar/me.png'
-import MeSelectedPng from '../../static/images/tabbar/me_selected.png'
-import GiftPng from '../../static/images/tabbar/gift.png'
-import GiftSelectedPng from '../../static/images/tabbar/gift_selected.png'
-import DiscoverPng from '../../static/images/tabbar/discover.png'
-import DiscoverSelectedPng from '../../static/images/tabbar/discover_selected.png'
-const TabBar = props => {
+import React, {useCallback} from "react";
+import { TabBar } from "antd-mobile";
+import {withRouter} from 'react-router-dom'
+import PngIcon from "../PngIcon";
+import { TabWrap } from "./style";
+
+const Bar = props => {
+  const TabItem = TabBar.Item;
+  const path = props.match.path
+
+  const goPath = useCallback(path => {
+    props.history.push(path)
+  }, [props.history])
+
+  const tabList = [
+    {
+      path: "/home",
+      icon: "home",
+      iconSelect: "home_selected",
+      name: "首页"
+    },
+    {
+      path: "/gift",
+      icon: "gift",
+      iconSelect: "gift_selected",
+      name: "福利"
+    },
+    {
+      path: "/discount",
+      icon: "discount",
+      iconSelect: "discount_selected",
+      name: "发现"
+    },
+    {
+      path: "/me",
+      icon: "me",
+      iconSelect: "me_selected",
+      name: "我的"
+    }
+  ];
   return (
-    <TabBar
-      unselectedTintColor="#949494"
-      tintColor="#33A3F4"
-      barTintColor="white"
-    >
-      <TabBar.Item
-        title="Life"
-        key="Life"
-        icon={<div style={{
-          width: '22px',
-          height: '22px',
-          background: 'url(https://zos.alipayobjects.com/rmsportal/sifuoDUQdAFKAVcFGROC.svg) center center /  21px 21px no-repeat' }}
-        />
-        }
-        selectedIcon={<div style={{
-          width: '22px',
-          height: '22px',
-          background: 'url(https://zos.alipayobjects.com/rmsportal/iSrlOTqrKddqbOmlvUfq.svg) center center /  21px 21px no-repeat' }}
-        />
-        }
-        selected={this.state.selectedTab === 'blueTab'}
-        onPress={() => {
-          this.setState({
-            selectedTab: 'blueTab',
-          });
-        }}
-        data-seed="logId"
-      >
-        {this.renderContent('Life')}
-      </TabBar.Item>
-    </TabBar>
-  )
-}
+    <TabWrap>
+      <TabBar
+        unselectedTintColor="#BCBCBC"
+        tintColor="#7486FC"
+        barTintColor="white">
+        {tabList.map(tab => (
+          <TabItem
+            title={tab.name}
+            key={tab.path}
+            icon={<PngIcon icon={tab.icon} width="20px" height="20px" />}
+            selectedIcon={
+              <PngIcon icon={tab.iconSelect} width="20px" height="20px" />
+            }
+            selected={path === tab.path}
+            onPress={() => goPath(tab.path)}
+          />
+        ))}
+      </TabBar>
+    </TabWrap>
+  );
+};
+
+export default withRouter(Bar);

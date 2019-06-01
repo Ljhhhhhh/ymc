@@ -6,7 +6,8 @@ import App from './App'
 import Register from './pages/user/register'
 import Login from './pages/user/login'
 import Forget from './pages/user/forget'
-import Home from './pages/Home/home'
+import Home from './pages/home/home'
+import Gift from './pages/gift/gift'
 // import Layout from './layout/layout'
 // import Home from './pages/home'
 // import Category from './pages/product/category'
@@ -30,6 +31,7 @@ export default class Router extends Component {
             <Route exact path='/login' component={Login} />
             <Route exact path='/forget' component={Forget} />
             <Route exact path='/home' component={Home} />
+            <Route exact path='/gift' component={Gift} />
             <Redirect to='/home' />
           </Switch>
         </App>

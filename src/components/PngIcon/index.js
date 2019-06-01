@@ -11,7 +11,7 @@ const PngIcon = props => {
   const iconWithPath = req(`./${icon}.png`)
   return (
     <div onClick={handleClick}>
-      <img style={{width, height}} src={iconWithPath} alt={icon}/>
+      <img style={{width, height, verticalAlign: 'middle'}} src={iconWithPath} alt={icon}/>
     </div>
   )
 }
