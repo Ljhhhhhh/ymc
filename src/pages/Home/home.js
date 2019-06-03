@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Carousel, NoticeBar } from "antd-mobile";
 import { Link } from "react-router-dom";
-import { Container, NotiveWrap, MenuWrap, CardWrap } from "./style";
+import { Container, NotiveWrap, MenuWrap, CardWrap, CardList, DisItem } from "./style";
 import Bar from "../../components/TabBar";
 import PngIcon from "../../components/PngIcon";
 import banner from "../../static/images/home_banner.png";
@@ -53,12 +53,14 @@ const Home = props => {
       </NotiveWrap>
       <Menu/>
       <CardWrap>
-        <div className="card_big">
+        <Link className="card_big" to="/">
           <div className="title">油卡充值套餐</div>
           <div className="sub_title">按月充值,优惠折扣</div>
           <div className="btn">立即充值</div>
-        </div>
+        </Link>
+        <Card/>
       </CardWrap>
+      
       <Bar />
     </Container>
   );
@@ -98,5 +100,47 @@ const Menu = () => {
     </MenuWrap>
   );
 };
+
+const Card = () => {
+  const list = [
+    {
+      price: '500',
+      unit: '月',
+      discountPrice: '7200',
+      discount: '8.0',
+      time: '18',
+      theme: 'orange',
+      bg: require('../../static/images/discount_bg_orange.png'),
+      path: '/1',
+      colors: {
+        theme: '#D87530',
+        assist: '#E6A277'
+      }
+    }
+  ]
+  return (
+    <CardList>
+      {
+        // TODO:: 主题 试着通过计算值 字体大小？
+        list.map(item => (
+          <DisItem 
+          key={item.path} 
+          className="item" 
+          to={item.path} 
+          theme={item.colors}
+          style={{backgroundImage: `url(${item.bg})`}}>
+            <PngIcon icon={`discount/discount_icon_${item.theme}`} width="56px" height="51px" />
+            <div className="desc">
+              <p className="price">￥{item.price}元/{item.unit}</p>
+              <p className="sub">折扣价:{item.discountPrice}</p>
+              <p className="badge">{item.discount}折</p>
+            </div>
+            <div className="corner">{item.time}个{item.unit}</div>
+          </DisItem>
+        ))
+      }
+    </CardList>
+  )
+}
 
 export default Home;

@@ -1,4 +1,13 @@
 @import "~antd-mobile/dist/antd-mobile.less";
+@vw_fontsize: 100; // iPhone 6尺寸的根元素大小基准值
+
+// 根元素大小使用 vw 单位
+@vw_design: 750;
+
+html {
+  height: 100%;
+  font-size: (@vw_fontsize / (@vw_design / 2)) * 100vw;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",

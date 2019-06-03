@@ -1,14 +1,17 @@
 import React from "react";
-// import {Container} from './style'
+import styled, {ThemeProvider} from 'styled-px2rem'
+import theme from 'styled-theming';
+import {Box} from './style'
 import Bar from '../../components/TabBar'
-import styles from './style.module.scss'
 
-const Home = props => {
+
+
+const Gift = props => {
   return (
-    <div>
-      <div className={styles.dor}>hello</div>
-    </div>
+      <Box>
+        Hello World
+      </Box>
   );
 };
 
-export default Home;
+export default Gift;

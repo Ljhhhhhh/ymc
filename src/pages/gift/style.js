@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from 'styled-px2rem'
 
-export const Container = styled.div `
-  max-height: calc(100vh - 50px);
-  width: 100%;
-`
+export const Box = styled.div`
+  background-color: ${props => props.theme.primaryColor};
+`;
+

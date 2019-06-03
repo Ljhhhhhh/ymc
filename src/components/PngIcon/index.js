@@ -1,6 +1,6 @@
 import React from 'react'
 // const requireAll = requireContext => requireContext.keys().map(requireContext)
-const req = require.context('./icons', false, /\.png$/)
+const req = require.context('./icons', true, /\.png$/)
 // requireAll(req).forEach(item => {
 //   console.log(item);
 // })
