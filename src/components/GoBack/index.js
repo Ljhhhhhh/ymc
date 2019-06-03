@@ -7,7 +7,7 @@ const GoBack = props => {
     props.history.goBack()
   }
   return (
-    <Icon type="left" onClick={back} />
+    <Icon size='lg' color={props.color || '#7486FC'} type="left" onClick={back} />
   )
 }
 

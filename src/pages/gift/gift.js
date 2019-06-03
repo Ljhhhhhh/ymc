@@ -1,8 +1,6 @@
 import React from "react";
-import styled, {ThemeProvider} from 'styled-px2rem'
-import theme from 'styled-theming';
 import {Box} from './style'
-import Bar from '../../components/TabBar'
+// import Bar from '../../components/TabBar'
 
 
 

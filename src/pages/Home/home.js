@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { Carousel, NoticeBar } from "antd-mobile";
 import { Link } from "react-router-dom";
-import { Container, NotiveWrap, MenuWrap, CardWrap, CardList, DisItem } from "./style";
+import { Container, NotiveWrap, MenuWrap, CardWrap, CardList, DisItem, ItemTitle, Featured, ProductList, Product } from "./style";
 import Bar from "../../components/TabBar";
 import PngIcon from "../../components/PngIcon";
 import banner from "../../static/images/home_banner.png";
+import home1 from "../../static/images/home_1.png";
+import home2 from "../../static/images/home_2.png";
+import home4 from "../../static/images/home_4.png";
 
 const Home = props => {
   const [hig, setHig] = useState("auto");
@@ -45,12 +48,7 @@ const Home = props => {
           />
         </a>
       </Carousel>
-      <NotiveWrap>
-        <NoticeBar
-          icon={<PngIcon width="16px" height="16px" icon="oil_station" />}>
-          中石油系统维护,油卡充值缺货通知 [2019.03.06]
-        </NoticeBar>
-      </NotiveWrap>
+      <NotiveContent/>
       <Menu/>
       <CardWrap>
         <Link className="card_big" to="/">
@@ -60,18 +58,76 @@ const Home = props => {
         </Link>
         <Card/>
       </CardWrap>
-      
+      <ItemTitle color="#FD6245">
+         <div className="bold">商城精选</div>
+         <Link to='/'>更多</Link>
+      </ItemTitle>
+      <Featured>
+        <Link to="/">
+          <img src={home1} alt="1"/>
+        </Link>
+        <Link to="/">
+          <img src={home2} alt="1"/>
+        </Link>
+        <Link to="/">
+          <img src={home2} alt="1"/>
+        </Link>
+      </Featured>
+      <ItemTitle color="#7486FC">
+        <div className="bold">热销好物</div>
+      </ItemTitle>
+      <ProductContent/>
       <Bar />
     </Container>
   );
 };
+
+const NotiveContent = () => {
+  const list = [
+    {
+      icon: 'oil_station',
+      content: '中石油系统维护,油卡充值缺货通知',
+      time: '2019.03.06',
+      path: '/notice'
+    },
+    {
+      icon: 'oil_station',
+      content: '中石油系统维护,油卡充值缺货通知',
+      time: '2019.03.06',
+      path: '/2'
+    }
+  ]
+  return (
+    <NotiveWrap>
+      <Carousel className="my-carousel"
+        vertical
+        dots={false}
+        dragging={false}
+        swiping={false}
+        autoplay
+        infinite
+      >
+        {
+          list.map(item => (
+            <Link to={item.path} key={item.path}>
+              <NoticeBar
+                icon={<PngIcon width="16px" height="16px" icon={item.icon} />}>
+                {item.content} [{item.time}]
+              </NoticeBar>
+            </Link>
+          ))
+        }
+      </Carousel>
+    </NotiveWrap>
+  )
+}
 
 const Menu = () => {
   const menuList = [
     {
       name: "油卡充值",
       icon: "home_menu_1",
-      path: "/1"
+      path: "/recharge"
     },
     {
       name: "话费充值",
@@ -116,12 +172,53 @@ const Card = () => {
         theme: '#D87530',
         assist: '#E6A277'
       }
-    }
+    },
+    {
+      price: '1000',
+      unit: '月',
+      discountPrice: '14400',
+      discount: '8.0',
+      time: '18',
+      theme: 'red',
+      bg: require('../../static/images/discount_bg_red.png'),
+      path: '/2',
+      colors: {
+        theme: '#F95563',
+        assist: '#F85562'
+      }
+    },
+    {
+      price: '500',
+      unit: '月',
+      discountPrice: '9600',
+      discount: '7.5',
+      time: '24',
+      theme: 'green',
+      bg: require('../../static/images/discount_bg_green.png'),
+      path: '/3',
+      colors: {
+        theme: '#4EBEB3',
+        assist: '#4EBFB4'
+      }
+    },
+    {
+      price: '1000',
+      unit: '月',
+      discountPrice: '18000',
+      discount: '7.5',
+      time: '24',
+      theme: 'blue',
+      bg: require('../../static/images/discount_bg_blue.png'),
+      path: '/4',
+      colors: {
+        theme: '#5E75CF',
+        assist: '#5E75CF'
+      }
+    },
   ]
   return (
     <CardList>
       {
-        // TODO:: 主题 试着通过计算值 字体大小？
         list.map(item => (
           <DisItem 
           key={item.path} 
@@ -140,6 +237,49 @@ const Card = () => {
         ))
       }
     </CardList>
+  )
+}
+
+const ProductContent = () => {
+  const list = [
+    {
+      thumb: home4,
+      title: '【sup联名】荷兰apiyoo电动红色网红限量版限量版限量版',
+      price: 368,
+      sold: 668,
+      path: '/1'
+    },
+    {
+      thumb: home4,
+      title: '【sup联名】荷兰apiyoo电动红色网红限量版限量版限量版',
+      price: 368,
+      sold: 668,
+      path: '/2'
+    },
+    {
+      thumb: home4,
+      title: '【sup联名】荷兰apiyoo电动红色网红限量版限量版限量版',
+      price: 368,
+      sold: 668,
+      path: '/3'
+    }
+  ]
+
+  return (
+    <ProductList>
+      {
+        list.map(item => (
+          <Product key={item.path} to={item.path}>
+            <img src={item.thumb} alt="1"/>
+            <div className="p_title">{item.title}</div>
+            <div className="sub">
+              <div className="price">￥{item.price}</div>
+              <div className="sold">已售{item.sold}</div>
+            </div>
+          </Product>
+        ))
+      }
+    </ProductList>
   )
 }
 
