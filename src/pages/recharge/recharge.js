@@ -21,7 +21,7 @@ const Recharge = () => {
           <div><span>+请添加加油卡</span><PngIcon icon='recharge/oil_station' width="14px" height="14px" /></div>
         </div>
       </AddCard>
-      <TicketList/>
+      <TicketList setTicket={setTicket} ticket={ticket} />
     </Container>
   )
 }
@@ -30,23 +30,32 @@ const TicketList = props => {
   const list = [
     {
       face: 100,
-      pay: 99.5
+      pay: 99.5,
+      id: 0
     },
     {
       face: 200,
-      pay: 199
+      pay: 199,
+      id: 1
     },
     {
       face: 500,
-      pay: 497.5
+      pay: 497.5,
+      id: 2
     },
     {
       face: 800,
-      pay: 796
+      pay: 796,
+      id: 3
     },
     {
       face: 1000,
-      pay: 995
+      pay: 995,
+      id: 4
+    },
+    {
+      face: '+自定义',
+      id: -1
     }
   ]
   return (
@@ -55,9 +64,15 @@ const TicketList = props => {
       <div className="content">
         {
           list.map(item => (
-            <TicketItem>
+            <TicketItem 
+              key={item.id}
+              onClick={() => props.setTicket(item.id)}
+              className={props.ticket === item.id ? 'selected' : ''}>
               <div className="face">{item.face}</div>
-              <div className="pay">{item.pay}</div>
+              {
+                item.pay ? <div className="pay">支付{item.pay}元</div> : null
+              }
+              
             </TicketItem>
           ))
         }

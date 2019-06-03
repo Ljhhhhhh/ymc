@@ -69,7 +69,7 @@ export const SelectTicket = styled.div `
   .content {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;    
+    justify-content: space-around;    
   }
 `
 
@@ -83,12 +83,11 @@ export const TicketItem = styled.div `
   align-items: center;
   border: 1px solid #C2C2C2;
   border-radius: 2px;
-  &:nth-child(2) {
-    margin: 10px 18px;
-  }
+  margin-bottom: 10px;
   .face{
     font-size: 16px;
     color: #333;
+    line-height: 30px;
   }
   .pay{
     font-size: 12px;
@@ -96,6 +95,10 @@ export const TicketItem = styled.div `
     font-weight:400;
   }
   &.selected{
-
+    background: #7486FC;
+    border: none;
+    .face, .pay{
+      color: #FFF;
+    }
   }
 `
