@@ -1,12 +1,23 @@
 import React, {useState, useCallback} from 'react'
-import {NavBar, Icon} from 'antd-mobile'
+import {NavBar, List, Carousel} from 'antd-mobile'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
 import GoBack from "../../components/GoBack";
 import PngIcon from "../../components/PngIcon";
-import {Container, AddCard, SelectTicket, TicketItem} from './style'
+import BuyView from '../../components/BuyView'
+import {Container, AddCard, SelectTicket, TicketItem, CouponWrap, Balance, CarouselWrap} from './style'
 
-const Recharge = () => {
-  const [ticket, setTicket] = useState(0)
+const ListItem = List.Item
+
+const Recharge = props => {
+  const [ticket, setTicket] = useState({})
+  const [card, setCard] = useState({})
+  const cardListJs = props.cardList.toJS()
+
+  const goSelectCoupon = () => {
+    props.history.push('/recharge/coupon')
+  }
 
   return (
     <Container>
@@ -15,14 +26,53 @@ const Recharge = () => {
         icon={<GoBack color='#333' />}
         rightContent={<Link to='/home'><PngIcon icon='question' width='20px' height='20px' /></Link>}
       >即时充值</NavBar>
-      <AddCard className="ratina-bd bd-t">
-        <div className="title">充值油卡</div>
-        <div className="add-btn">
-          <div><span>+请添加加油卡</span><PngIcon icon='recharge/oil_station' width="14px" height="14px" /></div>
-        </div>
-      </AddCard>
-      <TicketList setTicket={setTicket} ticket={ticket} />
+      {
+        cardListJs.length ? <CardList card={card} setCard={setCard} cardList={cardListJs}/> : <CreateCard/>
+      }
+      <TicketList showShadow={!cardListJs.length} setTicket={setTicket} ticket={ticket} />
+      <CouponWrap>
+        <ListItem extra="0 张" arrow="horizontal" onClick={goSelectCoupon}>优惠券</ListItem>
+      </CouponWrap>
+      <BuyView data={ticket}/>
     </Container>
+  )
+}
+
+const CreateCard = () => {
+  return (
+    <AddCard className="ratina-bd bd-t">
+      <div className="title">充值油卡</div>
+      <div className="add-btn">
+        <div><span>+请添加加油卡</span><PngIcon icon='recharge/oil_station' width="14px" height="14px" /></div>
+      </div>
+    </AddCard>
+  )
+}
+
+const CardList = props => {
+  const [imgH, setImgH] = useState('auto')
+  const {cardList: list, card, setCard} = props
+  return (
+    <CarouselWrap>
+      <Carousel
+        slideWidth={0.8}
+        dots={false}
+        frameOverflow="visible"
+        afterChange={index => setCard(list[index])}
+      >
+        {list.map(item => (
+          <img
+            key={item.id}
+            src={item.thumb}
+            style={{zIndex: card.id ===  item.id ? 2 : 1, top: card.id ===  item.id ? -10 : 0}}
+            onLoad={() => {
+              window.dispatchEvent(new Event('resize'));
+              setImgH('auto')
+            }}
+          />
+        ))}
+      </Carousel>
+    </CarouselWrap>
   )
 }
 
@@ -58,16 +108,17 @@ const TicketList = props => {
       id: -1
     }
   ]
+  const shadow = props.showShadow ? '0px -4px 5px 0px rgba(64,72,248,0.3)' : '';
   return (
-    <SelectTicket>
+    <SelectTicket shadow={shadow}>
       <div className="title">选择充值金额</div>
       <div className="content">
         {
           list.map(item => (
             <TicketItem 
               key={item.id}
-              onClick={() => props.setTicket(item.id)}
-              className={props.ticket === item.id ? 'selected' : ''}>
+              onClick={() => props.setTicket(item)}
+              className={props.ticket.id === item.id ? 'selected' : ''}>
               <div className="face">{item.face}</div>
               {
                 item.pay ? <div className="pay">支付{item.pay}元</div> : null
@@ -82,4 +133,9 @@ const TicketList = props => {
   )
 }
 
-export default Recharge
+const mapState = state => {
+  return {
+    cardList: state.getIn(['card', 'card_list'])
+  }
+}
+export default connect(mapState)(withRouter(Recharge))

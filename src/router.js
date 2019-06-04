@@ -10,6 +10,7 @@ import Home from './pages/home/home'
 import Gift from './pages/gift/gift'
 import Notice from './pages/notice/notice'
 import Recharge from './pages/recharge/recharge'
+import useCoupon from './pages/recharge/coupon'
 // import Layout from './layout/layout'
 // import Home from './pages/home'
 // import Category from './pages/product/category'
@@ -36,6 +37,7 @@ export default class Router extends Component {
             <Route exact path='/gift' component={Gift} />
             <Route exact path='/notice' component={Notice} />
             <Route exact path='/recharge' component={Recharge} />
+            <Route exact path='/recharge/coupon' component={useCoupon} />
             <Redirect to='/home' />
           </Switch>
         </App>
