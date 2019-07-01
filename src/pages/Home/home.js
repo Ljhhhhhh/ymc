@@ -132,7 +132,7 @@ const Menu = () => {
     {
       name: "话费充值",
       icon: "home_menu_2",
-      path: "/2"
+      path: "/recharge/telphone"
     },
     {
       name: "领取油卡",

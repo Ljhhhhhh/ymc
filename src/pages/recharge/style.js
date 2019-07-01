@@ -1,5 +1,7 @@
 import styled from 'styled-px2rem'
-import {List, Carousel} from 'antd-mobile'
+import {List} from 'antd-mobile'
+import telphoneBannerBg from '../../static/images/recharge/charge_bg.png'
+import telCouponBg from '../../static/images/recharge/tel-coupon_bg.png'
 
 export const Container = styled.div `
   width: 100%;
@@ -59,7 +61,6 @@ export const SelectTicket = styled.div `
   height: auto;
   padding: 20px;
   box-shadow: ${props => props.shadow};
-  /* box-shadow: 0px -4px 5px 0px rgba(64,72,248,0.3); */
   position: relative;
   margin-top: -10px;
   background: #FFF;
@@ -108,13 +109,13 @@ export const TicketItem = styled.div `
 `
 
 export const CouponWrap = styled(List) `
-  min-height: 50px;
+  min-height: 40px;
   margin: 10px 0;
   .am-list-body::before, .am-list-body::after{
     display: none!important;
   }
   .am-list-item{
-    min-height:50px;
+    min-height:40px;
   }
 `
 
@@ -189,19 +190,16 @@ export const CouponItem = styled.div `
       font-size: 15px;
       font-weight: 400;
       color: #333;
-      /* line-height: 28px; */
     }
     .time{
       font-size: 12px;
       font-weight: 400;
       color: #EB3F45;
-      /* line-height: 28px; */
     }
     .exp{
       font-size:12px;
       font-weight:400;
       color: #999999;
-      /* line-height:28px; */
     }
   }
   .btn{
@@ -215,3 +213,204 @@ export const CouponItem = styled.div `
     margin-right:13px;
   }
 `
+
+export const CouponTelItem = styled.div `
+  width: 100%;
+  height: 85px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #FFF;
+  border-radius: 2px;
+  margin-bottom: 16px;
+  .head{
+    width: 105px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: url(${telCouponBg}) no-repeat;
+    background-size: contain;
+    background-position: center;
+    color: #FFF;
+    font-size: 18px;
+  }
+  .desc {
+    line-height: 21px;
+    position: relative;
+    transform: translateX(-25px);
+    .name {
+      font-size: 12px;
+      font-weight: 400;
+      color: #333;
+    }
+    .more{
+      font-size: 12px;
+      font-weight: 400;
+      color: #BBB;
+    }
+  }
+  .btn{
+    width: 70px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #FFF;
+    font-size: 14px;
+    background: linear-gradient(to right, #7486FC, #4048F8);
+    margin-right:10px;
+  }
+`
+
+export const HeadBanner = styled.div `
+  width: 100%;
+  height: 135px;
+  background: url(${telphoneBannerBg}) no-repeat;
+  background-size: cover;
+  .content{
+    width: 355px;
+    height: 115px;
+    box-sizing: border-box;
+    padding: 0 10px;
+    border-radius:4px;
+    background: #FFF;
+    margin: 0 auto;
+    transform: translate(0,40px);
+    box-shadow:0px 2px 4px 0px rgba(242,240,246,0.71);
+    .am-tabs-default-bar{
+      height: auto;
+      .am-tabs-default-bar-content{
+        display: flex;
+        width: 100%;
+      }
+    }
+    .am-list-line:after{
+      display: none!important;
+    }
+    .am-list-item .am-input-label.am-input-label-5 {
+      width: 25px;
+      text-align: center;
+    }
+    .am-list-item .am-input-control input{
+      font-size: 15px;
+      color: #484848;
+      font-weight: 400;
+    }
+    .am-tabs-default-bar-tab:after{
+      top: 0!important;
+      bottom: auto!important;
+    }
+    .am-tabs-default-bar-underline{
+      top: 0!important;
+      bottom: auto!important;
+    }
+  }
+`
+
+export const TabWrapper = styled.div `
+  width: 100%;
+  height:auto;
+  margin-top: 30px;
+  .am-tabs-tab-bar-wrap{
+    display: none;
+  }
+`
+
+export const ComboWrap = styled.div `
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  padding: 20px 0 10px;
+  background: #FFF;
+  overflow-x: hidden;
+  .header{
+    font-size:15px;
+    line-height: 15px;
+    color: #333;
+    font-weight:400;
+    margin-bottom: 15px;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+  .pre-recharge{
+    padding: 0 20px;
+    box-sizing: border-box;
+    line-height: 17px;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size:15px;
+    font-weight:500;
+    .set-val{
+      width: 180px;
+      height: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .control{
+        display: block;
+        width: 23px;
+        height: 23px;
+        background: ${props => props.theme.primaryColor};
+        text-align: center;
+        line-height: 23px;
+        color:#FFF;
+        font-size: 18px;
+        border-radius: 50%;
+      }
+      .val{
+        font-size: 24px;
+      }
+    }
+  }
+  .am-slider-wrapper{
+    padding: 30px 20px 45px;
+    margin: 15px 20px 0;
+  }
+  .am-slider-handle{
+    box-shadow: 0 0 0 2px #FFF, 0 0 0 3px #ddd;
+    background: #7486fc;
+    margin-left: -8px;
+    margin-top: -8px;
+    width: 17px;
+    height: 17px;
+  }
+  .am-slider-dot{
+    background: #ddd;
+    top: -5px;
+  }
+  .am-slider-dot-active {
+    background: #fff;
+  }
+  .am-slider-mark-text{
+    color: #999;
+    &.am-slider-mark-text-active{
+      color: #666666;
+    }
+  }
+  .result{
+    line-height: 45px;
+    padding: 0 20px;
+    font-size: 13px;
+    color: #333;
+    text-align: center;
+    span{
+      padding: 0 8px;
+      font-size: 18px;
+      font-weight: 600;
+      color: ${props => props.theme.primaryColor}
+    }
+  }
+  .reminder{
+    line-height: 30px;
+    padding: 0 20px;
+    font-size: 12px;
+    color: #999;
+    text-align: right;
+    background: #F5F5F5;
+    font-weight:400;
+  }
+` 

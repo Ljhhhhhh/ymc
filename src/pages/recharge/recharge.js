@@ -2,7 +2,6 @@ import React, {useState, useCallback} from 'react'
 import {NavBar, List, Carousel} from 'antd-mobile'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
 import GoBack from "../../components/GoBack";
 import PngIcon from "../../components/PngIcon";
 import BuyView from '../../components/BuyView'
@@ -138,4 +137,4 @@ const mapState = state => {
     cardList: state.getIn(['card', 'card_list'])
   }
 }
-export default connect(mapState)(withRouter(Recharge))
+export default connect(mapState)(Recharge)

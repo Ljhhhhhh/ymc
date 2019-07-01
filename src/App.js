@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Provider } from "react-redux";
+import {withRouter} from 'react-router-dom'
 import StyleProvider from './theme'
 import store from './store'
 class App extends Component {
@@ -12,4 +13,4 @@ class App extends Component {
   }
 }
 
-export default StyleProvider(App);
+export default StyleProvider(withRouter(App));
